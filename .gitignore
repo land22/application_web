@@ -1,0 +1,27 @@
+# Global
+.DS_Store
+Thumbs.db
+.env
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorer les fichiers spécifiques à Laravel (backend)
+backend/vendor/
+backend/storage/
+backend/.env
+backend/.phpunit.result.cache
+
+# Ignorer les fichiers spécifiques à React (frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Autres fichiers potentiellement sensibles ou temporaires
+*.log
+*.cache
+.idea/
+.vscode/
