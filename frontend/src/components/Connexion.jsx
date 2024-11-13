@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importez useNavigate
+//import '../styles/connexion.css';
 
 const Connexion = () => {
     const [email, setEmail] = useState('');
-    const [motDePasse, setMotDePasse] = useState('');
+    const [password, setPassword] = useState(''); // Renommé motDePasse en password
     const navigate = useNavigate(); // Utilisez useNavigate pour la redirection
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Envoi de la requête avec les informations de connexion
             const response = await axios.post('http://localhost:8000/api/login', {
                 email,
-                mot_de_passe: motDePasse,
+                password,
             });
-            // Une fois la connexion réussie, redirigez l'utilisateur
-            localStorage.setItem('token', response.data.token); // Assurez-vous de stocker le token
-            navigate('/dashboard'); // Redirige vers le tableau de bord
+
+            // Vérification si le token est dans la réponse
+            if (response.data.token) {
+                // Stocker le token dans le localStorage
+                localStorage.setItem('token', response.data.token);
+                // Rediriger vers le dashboard
+                navigate('/dashboard');
+            } else {
+                console.error('Token non trouvé dans la réponse');
+                alert('Erreur de connexion');
+            }
         } catch (error) {
-            console.error('Erreur lors de la connexion', error);
+            console.error('Erreur lors de la connexion:', error);
+            alert('Une erreur est survenue lors de la connexion, veuillez réessayer.');
         }
     };
 
+
     return (
-        <div className="container">
+        <div className="login-background">
             <div className="row justify-content-center mt-5">
-                <div className="col-md-6">
+                <div className="col-md-6 col-page">
                     <div className="card">
                         <div className="card-header text-center">
                             <h4>Se connecter</h4>
@@ -44,13 +56,13 @@ const Connexion = () => {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="motDePasse" className="form-label">Mot de passe</label>
+                                    <label htmlFor="password" className="form-label">Mot de passe</label>
                                     <input
                                         type="password"
-                                        id="motDePasse"
+                                        id="password"
                                         className="form-control"
-                                        value={motDePasse}
-                                        onChange={(e) => setMotDePasse(e.target.value)}
+                                        value={password} // Utilisation de "password" au lieu de "motDePasse"
+                                        onChange={(e) => setPassword(e.target.value)} // Mise à jour de la fonction de changement
                                         required
                                     />
                                 </div>

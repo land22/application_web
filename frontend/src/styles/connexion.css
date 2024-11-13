@@ -1,0 +1,48 @@
+/* Connexion.css */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.login-background,
+.register-background {
+    background-image: url('../assets/images/background_login.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500%;
+    /* Prend toute la largeur du parent */
+    max-width: 600px;
+    /* Limite la largeur maximale */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ajoute une ombre douce */
+    margin-left: -100%;
+}
+
+
+.card-body {
+    padding: 20px;
+    /* Assurez-vous que le padding est suffisant */
+}
+
+.col-page {
+    padding-top: 8%;
+}

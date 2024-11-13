@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -14,9 +15,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nom' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'mot_de_passe' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -24,11 +25,10 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'nom' => $request->nom,
+            'name' => $request->name,
             'email' => $request->email,
-            'mot_de_passe' => Hash::make($request->mot_de_passe),
+            'password' => Hash::make($request->password),
             'role' => 'user',
-            'dateinscription' => now(),
         ]);
 
         return response()->json([
@@ -39,20 +39,32 @@ class AuthController extends Controller
     // Méthode de connexion
     public function login(Request $request)
     {
+        // Validation des entrées
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
-            'mot_de_passe' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        if (Auth::attempt(['email' => $request->email, 'mot_de_passe' => $request->mot_de_passe])) {
+        // Vérification des identifiants
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            return response()->json(['message' => 'Connexion réussie', 'user' => $user]);
+
+            // Générer le token JWT
+            $token = JWTAuth::fromUser($user);
+
+            // Réponse avec le token et les détails de l'utilisateur
+            return response()->json([
+                'message' => 'Connexion réussie',
+                'user' => $user,
+                'token' => $token // Renvoi du token
+            ]);
         }
 
+        // Si l'authentification échoue
         return response()->json(['message' => 'Identifiants invalides'], 401);
     }
 }

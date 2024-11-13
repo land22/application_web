@@ -5,15 +5,20 @@ import Connexion from './components/Connexion';
 import Dashboard from './components/Dashboard';
 
 function App() {
-  const isAuthenticated = localStorage.getItem('token');
+  // Vérification du token dans localStorage
+  const isAuthenticated = Boolean(localStorage.getItem('token')); // Vérifie si le token existe
+
   return (
     <Router>
       <Routes>
+        {/* Redirection vers Dashboard ou Login */}
+        <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+        {/* La route du Dashboard qui nécessite d'être connecté */}
         <Route
           path="/dashboard"
           element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
         />
-        <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
+        {/* Routes pour Inscription et Connexion */}
         <Route path="/register" element={<Inscription />} />
         <Route path="/login" element={<Connexion />} />
       </Routes>
@@ -22,4 +27,5 @@ function App() {
 }
 
 export default App;
+
 
