@@ -34,13 +34,18 @@ cp .env.example .env
 ```bash
 php artisan key:generate
 ```
-#### 2.5. Configurer la base de données dans le fichier .env :
+
+#### 2.5. Générer la clé jwt (car nous avons utilisé le module jwt pour la gestion des utilisateurs) :
+```bash
+php artisan jwt:secret
+```
+#### 2.6. Configurer la base de données dans le fichier .env :
 Assurez-vous d'avoir une base de données prête et de modifier les informations de connexion dans le fichier .env.
-#### 2.6. Lancer les migrations (optionnel si nécessaire) :
+#### 2.7. Lancer les migrations (optionnel si nécessaire) :
 ```bash
 php artisan migrate
 ```
-#### 2.7. Démarrer le serveur de développement Laravel :
+#### 2.8. Démarrer le serveur de développement Laravel :
 ```bash
 php artisan serve
 ```
