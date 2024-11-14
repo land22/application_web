@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 //import '../styles/connexion.css';
 
-const Connexion = () => {
+const Connexion = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); // Renommé motDePasse en password
     const navigate = useNavigate(); // Utilisez useNavigate pour la redirection
@@ -20,9 +20,12 @@ const Connexion = () => {
             // Vérification si le token est dans la réponse
             if (response.data.token) {
                 // Stocker le token dans le localStorage
+                console.log(response.data);
                 localStorage.setItem('token', response.data.token);
                 // Rediriger vers le dashboard
+                setIsAuthenticated(true);
                 navigate('/dashboard');
+                console.log('Redirection vers le dashboard réussie');
             } else {
                 console.error('Token non trouvé dans la réponse');
                 alert('Erreur de connexion');
@@ -35,7 +38,9 @@ const Connexion = () => {
 
 
     return (
-        <div className="login-background">
+        <div className="login-background"
+
+        >
             <div className="row justify-content-center mt-5">
                 <div className="col-md-6 col-page">
                     <div className="card">

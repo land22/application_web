@@ -56,7 +56,8 @@ const Inscription = () => {
     };
 
     return (
-        <div className="register-background">
+        <div className="register-background"
+        >
             <div className="row justify-content-center mt-5">
                 <div className="col-md-6 col-page">
                     <div className="card">
