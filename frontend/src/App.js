@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Inscription from './components/Inscription';
 import Connexion from './components/Connexion';
 import Dashboard from './components/Dashboard';
+import StockList from './components/StockList';
 
 function App() {
   // État pour suivre si l'utilisateur est authentifié
@@ -23,6 +24,10 @@ function App() {
         <Route
           path="/dashboard"
           element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/stocklist"
+          element={isAuthenticated ? <StockList /> : <Navigate to="/stocklist" />}
         />
         {/* Routes pour Inscription et Connexion */}
         <Route path="/register" element={<Inscription />} />

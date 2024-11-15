@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserCircle, FaSignOutAlt, FaHome, FaCog, FaChartLine } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaHome, FaCog, FaChartLine, FaWarehouse } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Layout = ({ children }) => {
@@ -14,8 +14,8 @@ const Layout = ({ children }) => {
         <div>
             {/* Barre horizontale en haut */}
             <div style={{
-                height: '50px', // Agrandir la hauteur de la barre horizontale
-                background: 'linear-gradient(to right, #228B22, #808080)', // Dégradé vert à gris
+                height: '50px',
+                background: 'linear-gradient(to right, #004600, #228B22, #808080)', // Dégradé vert à gris
                 display: 'flex',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
                 {/* Menu latéral */}
                 <aside style={{
                     width: '250px',
-                    backgroundColor: '#228B22',
+                    backgroundColor: '#004600',
                     color: 'white',
                     padding: '20px',
                     minHeight: '100vh'
@@ -54,6 +54,12 @@ const Layout = ({ children }) => {
                             <a href="/dashboard" style={{ color: 'white', textDecoration: 'none' }}>
                                 <FaHome style={{ marginRight: '10px' }} />
                                 Accueil
+                            </a>
+                        </li>
+                        <li style={{ marginBottom: '15px' }}>
+                            <a href="/stocklist" style={{ color: 'white', textDecoration: 'none' }}>
+                                <FaWarehouse style={{ marginRight: '10px' }} />
+                                gestion des stocks
                             </a>
                         </li>
                         <li style={{ marginBottom: '15px' }}>
