@@ -84,7 +84,8 @@ const StockList = () => {
         <Layout> {/* Utilisation du Layout */}
             <div className="container mt-4">
                 <h3>Gestion des Stocks</h3>
-                <Button variant="primary" onClick={handleShowModal}>
+                <Button style={{ backgroundColor: '#004600', color: 'white', border: 'none', borderRadius: '10px' }}
+                    onClick={handleShowModal}>
                     Ajouter un article
                 </Button>
 

@@ -4,6 +4,8 @@ import Inscription from './components/Inscription';
 import Connexion from './components/Connexion';
 import Dashboard from './components/Dashboard';
 import StockList from './components/StockList';
+import CultureList from './components/CultureList';
+import ActiviteAgricoleList from './components/ActiviteAgricoleList';
 
 function App() {
   // État pour suivre si l'utilisateur est authentifié
@@ -28,6 +30,14 @@ function App() {
         <Route
           path="/stocklist"
           element={isAuthenticated ? <StockList /> : <Navigate to="/stocklist" />}
+        />
+        <Route
+          path="/culturelist"
+          element={isAuthenticated ? <CultureList /> : <Navigate to="/culturelist" />}
+        />
+        <Route
+          path="/activiteAgricoleList"
+          element={isAuthenticated ? <ActiviteAgricoleList /> : <Navigate to="/activiteagricolelist" />}
         />
         {/* Routes pour Inscription et Connexion */}
         <Route path="/register" element={<Inscription />} />

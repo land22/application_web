@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserCircle, FaSignOutAlt, FaHome, FaCog, FaChartLine, FaWarehouse } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaHome, FaCog, FaChartLine, FaWarehouse, FaLeaf, FaSeedling } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Layout = ({ children }) => {
@@ -60,6 +60,18 @@ const Layout = ({ children }) => {
                             <a href="/stocklist" style={{ color: 'white', textDecoration: 'none' }}>
                                 <FaWarehouse style={{ marginRight: '10px' }} />
                                 gestion des stocks
+                            </a>
+                        </li>
+                        <li style={{ marginBottom: '15px' }}>
+                            <a href="/culturelist" style={{ color: 'white', textDecoration: 'none' }}>
+                                <FaLeaf style={{ marginRight: '10px' }} />
+                                gestion des cultures
+                            </a>
+                        </li>
+                        <li style={{ marginBottom: '15px' }}>
+                            <a href="/activiteagricolelist" style={{ color: 'white', textDecoration: 'none' }}>
+                                <FaSeedling style={{ marginRight: '10px' }} />
+                                Activités Agricole
                             </a>
                         </li>
                         <li style={{ marginBottom: '15px' }}>
