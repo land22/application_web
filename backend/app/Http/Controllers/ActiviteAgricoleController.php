@@ -39,6 +39,7 @@ class ActiviteAgricoleController extends Controller
         ]);
 
         $activite->update($validated);
+        $activite->load('culture');
         return response()->json($activite);
     }
 

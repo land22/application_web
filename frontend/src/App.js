@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import StockList from './components/StockList';
 import CultureList from './components/CultureList';
 import ActiviteAgricoleList from './components/ActiviteAgricoleList';
+import WeatherDashboard from './components/Weathe';
 
 function App() {
   // État pour suivre si l'utilisateur est authentifié
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/stocklist"
           element={isAuthenticated ? <StockList /> : <Navigate to="/stocklist" />}
+        />
+        <Route
+          path="/weatherDashboard"
+          element={isAuthenticated ? <WeatherDashboard /> : <Navigate to="/weatherDashboard" />}
         />
         <Route
           path="/culturelist"
