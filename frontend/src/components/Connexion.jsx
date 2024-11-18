@@ -20,7 +20,7 @@ const Connexion = ({ setIsAuthenticated }) => {
             // Vérification si le token est dans la réponse
             if (response.data.token) {
                 // Stocker le token dans le localStorage
-                console.log(response.data);
+                // console.log(response.data);
                 localStorage.setItem('token', response.data.token);
                 // Rediriger vers le dashboard
                 setIsAuthenticated(true);

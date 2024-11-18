@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\CultureController;
 use App\Http\Controllers\ActiviteAgricoleController;
+use App\Http\Controllers\NotificationController;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->withoutMiddleware([\Tymon\JWTAuth\Http\Middleware\Authenticate::class]);
@@ -43,4 +44,11 @@ Route::get('/activites-agricoles', [ActiviteAgricoleController::class, 'index'])
 Route::post('/activites-agricoles', [ActiviteAgricoleController::class, 'store']);
 Route::put('/activites-agricoles/{id}', [ActiviteAgricoleController::class, 'update']);
 Route::delete('/activites-agricoles/{id}', [ActiviteAgricoleController::class, 'destroy']);
+
+
+// Tous concernant la fonctionnalité de notification
+Route::get('/notifications', [NotificationController::class, 'index']);
+Route::post('/notifications', [NotificationController::class, 'store']);
+Route::put('/notifications/{id}', [NotificationController::class, 'update']);
+Route::delete('/notifications/{id}', [NotificationController::class, 'destroy']);
 
