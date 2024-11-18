@@ -8,7 +8,7 @@ use App\Http\Controllers\CultureController;
 use App\Http\Controllers\ActiviteAgricoleController;
 use App\Http\Controllers\NotificationController;
 
-Route::post('register', [AuthController::class, 'register']);
+Route::post('register', [AuthController::class, 'register'])->withoutMiddleware([\Tymon\JWTAuth\Http\Middleware\Authenticate::class]);
 Route::post('login', [AuthController::class, 'login'])->withoutMiddleware([\Tymon\JWTAuth\Http\Middleware\Authenticate::class]);
 Route::get('/test', function () {
     return response()->json(['message' => 'Test route is working']);

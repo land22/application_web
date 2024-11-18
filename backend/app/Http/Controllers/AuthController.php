@@ -24,7 +24,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            return response()->json(['message' => 'Validation échouée', 'errors' => $validator->errors()], 400);
         }
 
         $user = User::create([
@@ -33,10 +33,12 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'user',
         ]);
+        $token = JWTAuth::fromUser($user);
 
         return response()->json([
             'message' => 'Utilisateur créé avec succès',
-            'user' => $user
+            'user' => $user,
+            'token' => $token
         ]);
     }
     // Méthode de connexion
